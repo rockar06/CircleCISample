@@ -17,14 +17,14 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Build project
+          command: ./gradlew build
       - save_cache:
           key: source-v1-{{ .Branch }}-
           paths:
             - ".git"
             - ~/.gradle/caches/
-      - run:
-          name: Build project
-          command: ./gradlew build
 
   test-project:
     executor: android/android
