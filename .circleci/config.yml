@@ -20,3 +20,10 @@ jobs:
       - run:
           name: Run local unit test in project
           command: ./gradlew test
+
+workflows:
+  build-and-test:
+    jobs:
+      - build-project
+      - test-project:
+          requires: build-project
