@@ -25,6 +25,7 @@ jobs:
     executor: android/android
 
     steps:
+      - checkout
       - run:
           name: Run local unit test in project
           command: ./gradlew test
