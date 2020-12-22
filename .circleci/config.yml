@@ -17,6 +17,11 @@ jobs:
 
     steps:
       - checkout
+      - save_cache:
+          key: source-v1-{{ .Branch }}-
+          paths:
+            - ".git"
+            - ~/.gradle/caches/
       - run:
           name: Build project
           command: ./gradlew build
@@ -30,11 +35,6 @@ jobs:
             - source-v1-{{ .Branch }}-
             - source-v1-
       - checkout
-      - save_cache:
-          key: source-v1-{{ .Branch }}-
-          paths:
-            - ".git"
-            - ~/.gradle/caches/
       - run:
           name: Run local unit test in project
           command: ./gradlew test
