@@ -7,8 +7,7 @@ workflows:
   build-and-test:
     jobs:
       - build-project
-      - test-project:
-          requires: build-project
+      - test-project
 
 jobs:
   build-project:
