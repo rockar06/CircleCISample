@@ -3,6 +3,13 @@ version: 2.1
 orbs:
   android: circleci/android@0.2.1
 
+workflows:
+  build-and-test:
+    jobs:
+      - build-project
+      - test-project:
+          requires: build-project
+
 jobs:
   build-project:
     executor: android/android
@@ -20,10 +27,3 @@ jobs:
       - run:
           name: Run local unit test in project
           command: ./gradlew test
-
-workflows:
-  build-and-test:
-    jobs:
-      - build-project
-      - test-project:
-          requires: build-project
