@@ -4,14 +4,19 @@ orbs:
   android: circleci/android@0.2.1
 
 jobs:
-  build:
+  build-project:
     executor: android/android
 
     steps:
       - checkout
       - run:
-          name: Run local unit test in project
-          command: ./gradlew test
-      - run:
           name: Build project
           command: ./gradlew build
+
+  test-project:
+    executor: android/android
+
+    steps:
+      - run:
+          name: Run local unit test in project
+          command: ./gradlew test
